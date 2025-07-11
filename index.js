@@ -69,20 +69,26 @@ export const cryptoPretty = (
   const privateNum = Math.abs(num);
   const symbol = num < ZERO ? "-" : "";
 
-  if (privateNum === undefined || privateNum === null)
+  if (privateNum === undefined || privateNum === null) {
     throw new Error(
       "First argument not found. Number require for pretty function."
     );
+  }
 
-  if (privateNum > MAX)
+  if (privateNum > MAX) {
     throw new Error("Number greater 99.99T not working in this library");
+  }
 
   const shortVariant = () => {
-    if (privateNum === ZERO) return privateNum.toString();
+    if (privateNum === ZERO) {
+        return privateNum.toString(); 
+    }
 
     const rank = rankNumber(privateNum);
     if (privateNum > ZERO && privateNum < 1) {
-      if (rank >= -3) return addPrefix(privateNum.toFixed(4).toString(), symbol);
+      if (rank >= -3) { 
+        return addPrefix(privateNum.toFixed(4).toString(), symbol);
+      }
 
       const absRank = Math.abs(rank);
 
